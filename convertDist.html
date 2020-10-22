@@ -1,59 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Temperature Converter</title>
+        <title>Distance Converter</title>
         <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Temperature Converter</h1>
-        <form name="tempForm" id="tempForm" onsubmit="convert()">
+        <h1>Distance Converter</h1>
+        <form name="distForm" id="distForm" onsubmit="convert()">
             <label for="txtOldValue">From: </label>
             <input type="text" id="txtOldValue" required value="0" oninput="convert()">
             <select id="ddlOldUnit" oninput="convert()">
-                <option value="f">&deg;F</option>
-                <option value="c">&deg;C</option>
-                <option value="k">&deg;K</option>
+                <option value="ft">feet</option>
+                <option value="in">inches</option>
+                <option value="ya">yards</option>
+                <option value="m">meters</option>
             </select>
             <label for="txtNewValue">To: </label>
             <input type="text" id="txtNewValue" value="0">
             <select id="ddlNewUnit" oninput="convert()">
-                <option value="c">&deg;C</option>
-                <option value="f">&deg;F</option>
-                <option value="k">&deg;K</option>
+                <option value="ft">feet</option>
+                <option value="in">inches</option>
+                <option value="ya">yards</option>
+                <option value="m">meters</option>
             </select>
         </form>
 
-        <script type="module" src="conversions.js"></script>
-        <script type="module">
-            import * as Conversions from './conversions.js';
-
-            export function convert(){
+        <script src="conversions.js"></script>
+        <script>
+            function convert(){
                 event.preventDefault();
-                let tempValue = Number(document.getElementById('txtOldValue').value);
-                let newTempValue = 0;
+                let distValue = Number(document.getElementById('txtOldValue').value);
+                let newDistValue = 0;
                 switch(true){
-                    case ddlOldUnit.value == 'f' && ddlNewUnit.value == 'c':
-                        newTempValue = Conversions.fToC(tempValue);
+                    case ddlOldUnit.value == 'ft' && ddlNewUnit.value == 'in':
+                        newDistValue = convertFeetToInches(distValue);
                         break;
-                    case ddlOldUnit.value == 'f' && ddlNewUnit.value == 'k':
-                        newTempValue = Conversions.fToK(tempValue);
+                    case ddlOldUnit.value == 'ft' && ddlNewUnit.value == 'ya':
+                        newDistValue = convertFeetToYards(distValue);
                         break;
-                    case ddlOldUnit.value == 'c' && ddlNewUnit.value == 'f':
-                        newTempValue = Conversions.cToF(tempValue);
+                    case ddlOldUnit.value == 'ft' && ddlNewUnit.value == 'm':
+                        newDistValue = convertFeetToMeters(distValue);
                         break;
-                    case ddlOldUnit.value == 'c' && ddlNewUnit.value == 'k':
-                        newTempValue = Conversions.cToK(tempValue);
+                    case ddlOldUnit.value == 'in' && ddlNewUnit.value == 'ft':
+                        newDistValue = convertInchesToFeet(distValue);
                         break;
-                    case ddlOldUnit.value == 'k' && ddlNewUnit.value == 'f':
-                        newTempValue = Conversions.kToF(tempValue);
+                    case ddlOldUnit.value == 'in' && ddlNewUnit.value == 'ya':
+                        newDistValue = convertInchesToYards(distValue);
                         break;
-                    case ddlOldUnit.value == 'k' && ddlNewUnit.value == 'c':
-                        newTempValue = Conversions.kToC(tempValue);
+                    case ddlOldUnit.value == 'in' && ddlNewUnit.value == 'm':
+                        newDistValue = convertInchesToMeters(distValue);
+                        break;
+                    case ddlOldUnit.value == 'ya' && ddlNewUnit.value == 'ft':
+                        newDistValue = convertYardsToFeet(distValue);
+                        break;
+                    case ddlOldUnit.value == 'ya' && ddlNewUnit.value == 'in':
+                        newDistValue = convertYardsToInches(distValue);
+                        break;
+                    case ddlOldUnit.value == 'ya' && ddlNewUnit.value == 'm':
+                        newDistValue = convertYardsToMeters(distValue);
+                        break;
+                    case ddlOldUnit.value == 'm' && ddlNewUnit.value == 'ft':
+                        newDistValue = convertMetersToFeet(distValue);
+                        break;
+                    case ddlOldUnit.value == 'm' && ddlNewUnit.value == 'in':
+                        newDistValue = convertMetersToInches(distValue);
+                        break;
+                    case ddlOldUnit.value == 'm' && ddlNewUnit.value == 'ya':
+                        newDistValue = convertMetersToYards(distValue);
                         break;
                     default:
-                        newTempValue = tempValue;
+                        newDistValue = distValue;
                 }
-                document.getElementById('txtNewValue').value = newTempValue;
+                document.getElementById('txtNewValue').value = newDistValue;
             }
             
             
