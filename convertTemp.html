@@ -3,6 +3,7 @@
     <head>
         <title>Temperature Converter</title>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <h1>Temperature Converter</h1>
@@ -23,6 +24,7 @@
             </select>
         </form>
 
+        <script src="conversions.js"></script>
         <script>
             function convert(){
                 event.preventDefault();
@@ -51,25 +53,6 @@
                         newTempValue = tempValue;
                 }
                 document.getElementById('txtNewValue').value = newTempValue;
-            }
-            
-            function convertCtoF(temp){
-                return ((temp / 5) * 9) + 32;
-            }
-            function convertFtoC(temp){
-                return ((temp - 32) * 5) / 9;
-            }
-            function convertCtoK(temp){
-                return temp + 273.15;
-            }
-            function convertKtoC(temp){
-                return temp - 273.15;
-            }
-            function convertFtoK(temp){
-                return convertFtoC(temp) + 273.15;
-            }
-            function convertKtoF(temp){
-                return convertCtoF(temp - 273.15);
             }
         </script>
     </body>
