@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Temperature Converter</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>Temperature Converter</h1>
+        <form name="tempForm" id="tempForm" onsubmit="convert()">
+            <label for="txtOldValue">From: </label>
+            <input type="text" id="txtOldValue" required value="0" oninput="convert()">
+            <select id="ddlOldUnit" oninput="convert()">
+                <option value="f">&deg;F</option>
+                <option value="c">&deg;C</option>
+                <option value="k">&deg;K</option>
+            </select>
+            <label for="txtNewValue">To: </label>
+            <input type="text" id="txtNewValue" value="0">
+            <select id="ddlNewUnit" oninput="convert()">
+                <option value="c">&deg;C</option>
+                <option value="f">&deg;F</option>
+                <option value="k">&deg;K</option>
+            </select>
+        </form>
+
+        <script>
+            function convert(){
+                event.preventDefault();
+                let tempValue = Number(document.getElementById('txtOldValue').value);
+                let newTempValue = 0;
+                switch(true){
+                    case ddlOldUnit.value == 'f' && ddlNewUnit.value == 'c':
+                        newTempValue = convertFtoC(tempValue);
+                        break;
+                    case ddlOldUnit.value == 'f' && ddlNewUnit.value == 'k':
+                        newTempValue = convertFtoK(tempValue);
+                        break;
+                    case ddlOldUnit.value == 'c' && ddlNewUnit.value == 'f':
+                        newTempValue = convertCtoF(tempValue);
+                        break;
+                    case ddlOldUnit.value == 'c' && ddlNewUnit.value == 'k':
+                        newTempValue = convertCtoK(tempValue);
+                        break;
+                    case ddlOldUnit.value == 'k' && ddlNewUnit.value == 'f':
+                        newTempValue = convertKtoF(tempValue);
+                        break;
+                    case ddlOldUnit.value == 'k' && ddlNewUnit.value == 'c':
+                        newTempValue = convertKtoC(tempValue);
+                        break;
+                    default:
+                        newTempValue = tempValue;
+                }
+                document.getElementById('txtNewValue').value = newTempValue;
+            }
+            
+            function convertCtoF(temp){
+                return ((temp / 5) * 9) + 32;
+            }
+            function convertFtoC(temp){
+                return ((temp - 32) * 5) / 9;
+            }
+            function convertCtoK(temp){
+                return temp + 273.15;
+            }
+            function convertKtoC(temp){
+                return temp - 273.15;
+            }
+            function convertFtoK(temp){
+                return convertFtoC(temp) + 273.15;
+            }
+            function convertKtoF(temp){
+                return convertCtoF(temp - 273.15);
+            }
+        </script>
+    </body>
+</html>

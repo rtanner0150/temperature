@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Temperature Converter</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>Temperature Converter</h1>
+        <form name="tempForm" id="tempForm" onsubmit="convert()">
+            <label for="tempValue">Value: </label><input type="text" name="tempValue" id="tempValue">
+            <input type="radio" name="tempOption" id="tempF"><label for="tempF">To Fahrenheit</label>
+            <input type="radio" name="tempOption" id="tempC"><label for="tempC">To Celsius</label>
+            <input type="submit" value="Convert">
+        </form>
+
+        <h2>Original temp: <span id="oldTempValue"></span><span id="oldUnit"></span></h2>
+        <h2>New temp: <span id="newTempValue"></span><span id="newUnit"></span></h2>
+
+        <script>
+            function convert(){
+                event.preventDefault();
+
+                let rbTempF = document.getElementById('tempF');
+                let rbTempC = document.getElementById('tempC');
+                let oldTempValue = Number(document.getElementById('tempValue').value);
+                let newTempValue = 0;
+                let oldUnit = '';
+                let newUnit = '';
+                let spanOldTemp = document.getElementById('oldTempValue');
+                let spanNewTemp = document.getElementById('newTempValue');
+                let spanOldUnit = document.getElementById('oldUnit');
+                let spanNewUnit = document.getElementById('newUnit');
+
+                if (rbTempF.checked){
+                    oldUnit = 'C';
+                    newUnit = 'F';
+                    newTempValue = convertCtoF(oldTempValue);
+                } else if (rbTempC.checked){
+                    oldUnit = 'F';
+                    newUnit = 'C';
+                    newTempValue = convertFtoC(oldTempValue);
+                } else {
+                    alert('No conversion selected');
+                    return;
+                }
+                spanOldTemp.textContent = oldTempValue;
+                spanNewTemp.textContent = newTempValue;
+                spanOldUnit.textContent = oldUnit;
+                spanNewUnit.textContent = newUnit;
+            }
+            
+            function convertCtoF(temp){
+                return ((temp / 5) * 9) + 32;
+            }
+            function convertFtoC(temp){
+                return ((temp - 32) * 5) / 9;
+            }
+            function convertCtoK(temp){
+                return temp + 273.15;
+            }
+            function convertKtoC(temp){
+                return temp - 273.15;
+            }
+            function convertFtoK(temp){
+                return convertFtoC(temp) + 273.15;
+            }
+            function convertKtoF(temp){
+                return convertCtoF(temp - 273.15);
+            }
+        </script>
+    </body>
+</html>
