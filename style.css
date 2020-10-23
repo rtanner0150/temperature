@@ -4,3 +4,5 @@ h1{font-family:'Raleway', Arial, helvetica, sans-serif; font-weight:700;}
 .landing{display:flex; justify-content:center;;}
 a{color:white; background:black; padding:15px 30px; font-size:24px; text-decoration:none; margin:0 10px;}
 a:hover{background:white; color:black;}
+input.new{background:#333; border:none; color:white; cursor:default;}
+input.new:focus{outline:none;}
