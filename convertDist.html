@@ -16,6 +16,7 @@
                 <option value="in">inches</option>
                 <option value="ya">yards</option>
                 <option value="m">meters</option>
+                <option value="cm">centimeters</option>
             </select>
             <label for="txtNewValue">To: </label>
             <input type="text" id="txtNewValue" value="0">
@@ -24,6 +25,7 @@
                 <option value="in">inches</option>
                 <option value="ya">yards</option>
                 <option value="m">meters</option>
+                <option value="cm">centimeters</option>
             </select>
         </form>
 
@@ -43,6 +45,9 @@
                     case ddlOldUnit.value == 'ft' && ddlNewUnit.value == 'm':
                         newDistValue = convertFeetToMeters(distValue);
                         break;
+                    case ddlOldUnit.value == 'ft' && ddlNewUnit.value == 'cm':
+                        newDistValue = convertFeetToCentimeters(distValue);
+                        break;
                     case ddlOldUnit.value == 'in' && ddlNewUnit.value == 'ft':
                         newDistValue = convertInchesToFeet(distValue);
                         break;
@@ -51,6 +56,9 @@
                         break;
                     case ddlOldUnit.value == 'in' && ddlNewUnit.value == 'm':
                         newDistValue = convertInchesToMeters(distValue);
+                        break;
+                    case ddlOldUnit.value == 'in' && ddlNewUnit.value == 'cm':
+                        newDistValue = convertInchesToCentimeters(distValue);
                         break;
                     case ddlOldUnit.value == 'ya' && ddlNewUnit.value == 'ft':
                         newDistValue = convertYardsToFeet(distValue);
@@ -61,6 +69,9 @@
                     case ddlOldUnit.value == 'ya' && ddlNewUnit.value == 'm':
                         newDistValue = convertYardsToMeters(distValue);
                         break;
+                    case ddlOldUnit.value == 'ya' && ddlNewUnit.value == 'cm':
+                        newDistValue = convertYardsToCentimeters(distValue);
+                        break;
                     case ddlOldUnit.value == 'm' && ddlNewUnit.value == 'ft':
                         newDistValue = convertMetersToFeet(distValue);
                         break;
@@ -69,6 +80,21 @@
                         break;
                     case ddlOldUnit.value == 'm' && ddlNewUnit.value == 'ya':
                         newDistValue = convertMetersToYards(distValue);
+                        break;
+                    case ddlOldUnit.value == 'm' && ddlNewUnit.value == 'cm':
+                        newDistValue = convertMetersToCentimeters(distValue);
+                        break;
+                    case ddlOldUnit.value == 'cm' && ddlNewUnit.value == 'ft':
+                        newDistValue = convertCentimetersToFeet(distValue);
+                        break;
+                    case ddlOldUnit.value == 'cm' && ddlNewUnit.value == 'in':
+                        newDistValue = convertCentimetersToInches(distValue);
+                        break;
+                    case ddlOldUnit.value == 'cm' && ddlNewUnit.value == 'ya':
+                        newDistValue = convertCentimetersToYards(distValue);
+                        break;
+                    case ddlOldUnit.value == 'cm' && ddlNewUnit.value == 'm':
+                        newDistValue = convertCentimetersToMeters(distValue);
                         break;
                     default:
                         newDistValue = distValue;

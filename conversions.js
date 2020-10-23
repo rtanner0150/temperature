@@ -52,3 +52,27 @@ function convertMetersToInches(dist){
 function convertMetersToYards(dist){
     return (dist * 3.2808) / 3;
 }
+function convertFeetToCentimeters(dist){
+    return convertFeetToMeters(dist) * 100;
+}
+function convertInchesToCentimeters(dist){
+    return convertInchesToMeters(dist) * 100;
+}
+function convertYardsToCentimeters(dist){
+    return convertYardsToMeters(dist) * 100;
+}
+function convertMetersToCentimeters(dist){
+    return dist * 100;
+}
+function convertCentimetersToFeet(dist){
+    return convertMetersToFeet(dist / 100);
+}
+function convertCentimetersToInches(dist){
+    return convertMetersToInches(dist / 100);
+}
+function convertCentimetersToYards(dist){
+    return convertMetersToYards(dist / 100);
+}
+function convertCentimetersToMeters(dist){
+    return dist / 100;
+}
