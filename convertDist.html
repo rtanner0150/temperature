@@ -19,7 +19,7 @@
                 <option value="cm">centimeters</option>
             </select>
             <label for="txtNewValue">To: </label>
-            <input type="text" id="txtNewValue" value="0">
+            <input type="text" id="txtNewValue" value="0" class="new">
             <select id="ddlNewUnit" oninput="convert()">
                 <option value="ft">feet</option>
                 <option value="in">inches</option>
@@ -32,9 +32,10 @@
         <script src="conversions.js"></script>
         <script>
             function convert(){
-                event.preventDefault();
+                //get value to be converted
                 let distValue = Number(document.getElementById('txtOldValue').value);
                 let newDistValue = 0;
+                //determine which conversion function to call based on dropdownlist selections
                 switch(true){
                     case ddlOldUnit.value == 'ft' && ddlNewUnit.value == 'in':
                         newDistValue = convertFeetToInches(distValue);
@@ -99,6 +100,7 @@
                     default:
                         newDistValue = distValue;
                 }
+                //insert new value in destination, rounded off to 2 digits after decimal
                 document.getElementById('txtNewValue').value = newDistValue.toFixed(2);
             }
             

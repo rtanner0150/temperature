@@ -17,7 +17,7 @@
                 <option value="k">&deg;K</option>
             </select>
             <label for="txtNewValue">To: </label>
-            <input type="text" id="txtNewValue" value="0">
+            <input type="text" id="txtNewValue" value="0" class="new">
             <select id="ddlNewUnit" oninput="convert()">
                 <option value="c">&deg;C</option>
                 <option value="f">&deg;F</option>
@@ -28,9 +28,10 @@
         <script src="conversions.js"></script>
         <script>
             function convert(){
-                event.preventDefault();
+                //get value to be converted
                 let tempValue = Number(document.getElementById('txtOldValue').value);
                 let newTempValue = 0;
+                //determine which conversion function to call based on dropdownlist selections
                 switch(true){
                     case ddlOldUnit.value == 'f' && ddlNewUnit.value == 'c':
                         newTempValue = convertFtoC(tempValue);
@@ -51,8 +52,9 @@
                         newTempValue = convertKtoC(tempValue);
                         break;
                     default:
-                        newTempValue = tempValue;
+                        newTempValue = tempValue; //if units match, values should match
                 }
+                //insert new value in destination, rounded off to 2 digits after decimal
                 document.getElementById('txtNewValue').value = newTempValue.toFixed(2);
             }
         </script>

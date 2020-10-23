@@ -1,3 +1,4 @@
+//conversion functions
 function convertCtoF(temp){
     return ((temp / 5) * 9) + 32;
 }
